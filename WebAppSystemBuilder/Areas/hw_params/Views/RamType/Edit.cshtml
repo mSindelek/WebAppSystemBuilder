@@ -1,0 +1,19 @@
+﻿@using WebAppSystemBuilder.DTO.Items.HWComponent.Shared
+
+@model RamTypeDTO
+
+<h4>Update a RAM generation</h4>
+<div>
+    <form asp-action="Edit">
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input type="text" asp-for="@Model.Name" class="form-control" />
+            <br />
+            <label asp-for="ShortDesc">Short Description (optional)</label>
+            <input type="text" asp-for="ShortDesc" class=" form-control" />
+        </div>
+        <div>
+            <input class="btn btn-success" type="submit" value="Update" />
+        </div>
+    </form>
+</div>

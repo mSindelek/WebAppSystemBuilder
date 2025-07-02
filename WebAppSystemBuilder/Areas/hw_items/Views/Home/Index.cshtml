@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Choose where you want to go next.</p>
+</div>
+
+<div asp-area="hw_params">
+    <a class="nav-link text-dark" asp-controller="Processor" asp-action="Index">Index of Processors</a>
+    <a class="nav-link text-dark" asp-controller="Memory" asp-action="Index">Index of DRAMs</a>
+    <a class="nav-link text-dark" asp-controller="Motherboard" asp-action="Index">Index of Motherboards</a>
+    <a class="nav-link text-dark" asp-controller="GraphicsCard" asp-action="Index">Index of Graphics Cards</a>
+</div>

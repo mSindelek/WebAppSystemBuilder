@@ -1,0 +1,22 @@
+﻿@using WebAppSystemBuilder.DTO.Items.HWComponent.Mobo
+
+@model MotherboardDTO
+
+<h4>Update Motherboard (item) definition</h4>
+<div>
+    <form asp-action="Edit">
+        <div class="form-group">
+                <label asp-for="Name"></label>
+                <input type="text" asp-for="Name" class="form-control" />
+                <br />
+                <label asp-for="ChipsetId">Expected power consuption in Watts (optional)</label>
+                <select asp-for="ChipsetId" class="form-control" asp-items="ViewBag.Chipsets"></select>
+                <br />
+                <label asp-for="Description">Full Description (optional, detail view only)</label>
+                <input type="text" asp-for="Description" class="form-control" />
+        </div>
+        <div>
+            <input class="btn btn-success" type="submit" value="Update" />
+        </div>
+    </form>
+</div>

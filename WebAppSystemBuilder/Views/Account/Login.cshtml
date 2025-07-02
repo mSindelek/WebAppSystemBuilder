@@ -1,0 +1,37 @@
+﻿@using WebAppSystemBuilder.ViewModels
+
+@model LoginViewModel
+
+<h1>Login</h1>
+<div asp-validation-summary="All" />
+<form asp-action="Login" method="post">
+    <input type="hidden" asp-for="ReturnUrl" />
+    <div>
+        <label asp-for="UserName"></label>
+        <input asp-for="UserName" class="form-control" />
+    </div>
+    <div>
+        <label asp-for="Password"></label>
+        <input type="password" asp-for="Password" class="form-control" />
+    </div>
+    <div>
+        Remember? <input type="checkbox" asp-for="Remember" />
+    </div>
+    <button class="btn btn-primary" type="submit">Log In</button>
+    <div class="text-danger">
+        <p>
+            <div>
+                Login as guest to preview most of avaiable areas. 
+                <br/>
+                Login as Editor to be able to edit and insert new data into database.
+                <br/>
+                Log into admin account to be able to delete entries and preview user / role data. Full control is intentionaly unavaible.
+            </div>
+        </p>
+        <p>
+        <div>Login for admin account is "superiorA" authorized by first 4 letters of alphabet starting with capital character, followed by first 4 numbers, finished with a "dot". </div>
+        </p>
+        <a class="btn btn-primary" asp-area="" asp-controller="Account" asp-action="LoginAsGuest">Log Into Guest</a>
+        <a class="btn btn-primary" asp-area="" asp-controller="Account" asp-action="LoginAsEditor">Log Into Editor</a>
+    </div>
+</form>

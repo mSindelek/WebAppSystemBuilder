@@ -1,0 +1,29 @@
+﻿@using WebAppSystemBuilder.DTO.Items.HWComponent.CPU
+
+@model ProcessorDTO
+
+<h4>Update Processor (item) definition</h4>
+<div>
+    <form asp-action="Edit">
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input type="text" asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger" />
+            <br />
+            <label asp-for="SocketId" class="control-label"></label>
+            <select asp-for="SocketId" class="form-control" asp-items="ViewBag.Sockets"></select>
+            <br />
+            <label asp-for="TDP">Expected power consumption in Watts (optional)</label>
+            <input type="number" asp-for="TDP" class="form-control" />
+            <br />
+            <label asp-for="ShortDesc">Short Description (optional)</label>
+            <input type="text" asp-for="ShortDesc" class="form-control" />
+            <br />
+            <label asp-for="Description">Full Description (optional, detail view only)</label>
+            <input type="text" asp-for="Description" class="form-control" />
+        </div>
+        <div>
+            <input class="btn btn-success" type="submit" value="Update" />
+        </div>
+    </form>
+</div>

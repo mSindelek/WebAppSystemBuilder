@@ -1,0 +1,27 @@
+﻿@using WebAppSystemBuilder.DTO.Items.HWComponent.Mobo
+
+@model ChipsetDTO
+
+<h4>Update a chipset</h4>
+<div>
+    <form asp-action="Edit">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input type="text" asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger" />
+            <br />
+            <label asp-for="SocketId" class="control-label"></label>
+            <select asp-for="SocketId" class="form-control" asp-items="ViewBag.Sockets"></select>
+            <br />
+            <label asp-for="RamTypeId" class="control-label"></label>
+            <select asp-for="RamTypeId" class="form-control" asp-items="ViewBag.RamTypes"></select>
+            <br />
+            <label asp-for="ShortDesc">Short Description (optional)</label>
+            <input type="text" asp-for="ShortDesc" class=" form-control" />
+        </div>
+        <div>
+            <input class="btn btn-success" type="submit" value="Update" />
+        </div>
+    </form>
+</div>

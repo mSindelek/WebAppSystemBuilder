@@ -1,0 +1,45 @@
+﻿@using WebAppSystemBuilder.DTO.Items.HWComponent.CPU
+
+@model IEnumerable<ProcessorDTO>
+
+<h1>Index of Processors</h1>
+
+@if (User.Identity != null && User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Editor"))) {
+    <a asp-action="Create" class="btn btn-success text-warning">Add new</a>
+}
+
+<div class="border border-1 border-dark p-2 ">
+    <table class="table table-sm table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Platform</th>
+                <th>TDP</th>
+                <th>Description</th>
+                @if (User.Identity != null && User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Editor"))) {
+                    <th>Action</th>
+                    <th>ID:</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.SocketName</td>
+                    <td>@item.TDP W</td>
+                    <td>@item.ShortDesc</td>
+                    @if (User.Identity != null && User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Editor"))) {
+                        <td class="d-inline-flex">
+                            <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <form asp-action="Delete" method="post">
+                                <button type="submit" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</button>
+                            </form>
+                        </td>
+                        <td>@item.Id</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

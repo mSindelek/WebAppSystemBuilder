@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Main Page";
+}
+<style>
+    .center-horizontally {
+        width: 70%;
+        margin: 0 auto;
+        background-color: #f0f0f0;
+        text-align: center;
+        padding: 20px;
+    }
+</style>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+</div>
+<br />
+<div class="center-horizontally">
+    <h3 class="text-center"> <b>About the app</b></h3>
+    <p>This app under working name "SystemBuilder" is heavily WIP, build with ASP.NET MVC and Entity framework in C#.</p>
+    <h5>Initial idea of this apps purpose:</h5>
+    <div>
+        The initial idea has been to build an app capable of virtualy assembly computer components,
+        helping with choice of parts both via recomendations and restricting options to only compatible ones.
+        Since this require extensive amount of data, it seemed only natural to build base from common parameters
+        and only after that be able to list actual components with optional listing of individual ones (similiar to e-shop item listings)
+    </div>
+    <br />
+    <h5>Currently supported features:</h5>
+    <div>
+        Adding, Editing, Deleting to/from MSSQL database.<br />
+        Showing list of parameters and items with dependencies on other table data.<br />
+        User and Role management with authorized acces.<br />
+    </div>
+    <br />
+    <h5>Possible future updates (wishlist):</h5>
+    <div>
+        <p>
+            Various fixes and layout updates (such as login reverting to main page, instead of last opened)
+        </p>
+        <p>
+            Search function in list view, with name and/or parameter filtering.
+        </p>
+        <p>
+            More table data (ex. powersupplies, storage disks) and helper parameters. (ex. core counts for cpus, capacity for memory modules, perf. rating for cpu and gpu... etc.)
+        </p>
+        <p>
+            Ability to virtualy "build" personal computers (or possible workstation or more advanced setups - unlikely but possible) with compatibility dependencies and recomendations.
+            With possibility to also show expected price of whole setup. (depending on externaly avaiable data)
+        </p>
+        <p>
+            Import (/Export?) fuction to fill table with data in mass volume.
+        </p>
+    </div>
+
+</div>

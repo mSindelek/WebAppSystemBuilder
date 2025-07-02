@@ -1,0 +1,33 @@
+﻿@using WebAppSystemBuilder.DTO.Items.HWComponent.RAM
+
+@model MemoryDTO
+
+<h4>Update RAM (item) definition</h4>
+<div>
+    <form asp-action="Edit">
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input type="text" asp-for="Name" class="form-control" />
+            <br />
+            <label asp-for="RamTypeId" class="control-label">Select DRAM version</label>
+            <select asp-for="RamTypeId" class="form-control" asp-items="ViewBag.RamType"></select>
+            <br />
+            <label asp-for="ModuleTypeId">Select module format</label>
+            <select asp-for="ModuleTypeId" class="form-control" asp-items="ViewBag.ModuleType"></select>
+            <br />
+            <div>
+            Does support ECC?
+            <input type="checkbox" asp-for="ECC" class="form-control" />
+            </div>
+            <br />
+            <label asp-for="ShortDesc">Short Description (optional)</label>
+            <input type="text" asp-for="ShortDesc" class="form-control" />
+            <br />
+            <label asp-for="Description">Full Description (optional, detail view only)</label>
+            <input type="text" asp-for="Description" class="form-control" />
+        </div>
+        <div>
+            <input class="btn btn-success" type="submit" value="Update" />
+        </div>
+    </form>
+</div>
