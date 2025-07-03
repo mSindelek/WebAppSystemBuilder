@@ -19,7 +19,9 @@ namespace WebAppSystemBuilder.Services.hw_items {
         }
 
         internal async Task<ProcessorDTO?> GetByIdAsync(int id) {
-            var processorModelToEdit = await _dbContext.HW_Processors.FindAsync(id);
+            var processorModelToEdit = await _dbContext.HW_Processors
+                .Include(cpu =>cpu.Socket)
+                .FirstAsync(cpu =>cpu.Id == id);
             if (processorModelToEdit == null) return null;
             return ModelToDto(processorModelToEdit);
         }
@@ -53,6 +55,8 @@ namespace WebAppSystemBuilder.Services.hw_items {
             SocketName = processor.Socket.Name,
             SocketId = processor.Socket.Id,
             TDP = processor.TDP,
+            ShortDesc = processor.ShortDesc,
+            Description = processor.Description,
         };
 
         private async Task<ProcessorModel> DtoToModelAsync(ProcessorDTO newProcessor) => new() {
@@ -60,6 +64,8 @@ namespace WebAppSystemBuilder.Services.hw_items {
             Name = newProcessor.Name,
             TDP = newProcessor.TDP,
             Socket = await _dbContext.HW_CPUSockets.FindAsync(newProcessor.SocketId) ?? throw new ArgumentNullException(newProcessor.SocketId.ToString()), // TODO: better handling of possible null reference - id doesnt exist eg. due deletion from different endpoint
+            ShortDesc = newProcessor.ShortDesc,
+            Description = newProcessor.Description,
         };
 
     }

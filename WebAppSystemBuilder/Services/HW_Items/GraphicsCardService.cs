@@ -18,7 +18,9 @@ namespace WebAppSystemBuilder.Services.hw_items {
         }
 
         internal async Task<GraphicsCardDTO?> GetByIdAsync(int id) {
-            var graphicsCardModelToEdit = await _dbContext.HW_GraphicsCards.FindAsync(id);
+            var graphicsCardModelToEdit = await _dbContext.HW_GraphicsCards
+                .Include(gpu => gpu.GPUBaseModel)
+                .FirstAsync(gpu => gpu.Id == id);
             if (graphicsCardModelToEdit == null) return null;
             return ModelToDto(graphicsCardModelToEdit);
         }

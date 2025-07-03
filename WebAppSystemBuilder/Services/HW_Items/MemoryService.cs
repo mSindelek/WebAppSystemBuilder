@@ -21,7 +21,10 @@ namespace WebAppSystemBuilder.Services.hw_items {
         }
 
         internal async Task<MemoryDTO?> GetByIdAsync(int id) {
-            var memoryModelToEdit = await _dbContext.HW_Memories.FindAsync(id);
+            var memoryModelToEdit = await _dbContext.HW_Memories
+                .Include(ram => ram.RamType)
+                .Include(ram => ram.ModuleType)
+                .FirstAsync(ram => ram.Id == id);
             if (memoryModelToEdit == null) return null;
             return ModelToDto(memoryModelToEdit);
         }

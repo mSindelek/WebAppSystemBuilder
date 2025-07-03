@@ -9,7 +9,9 @@ namespace WebAppSystemBuilder.Services.hw_params {
         private readonly AppDbContext _dbContext = dbContext;
 
         public IEnumerable<ChipsetDTO> GetAll() {
-            var allChipsets = _dbContext.HW_Chipsets.Include(chp => chp.Socket).Include(chp => chp.RamType);
+            var allChipsets = _dbContext.HW_Chipsets
+                .Include(chp => chp.Socket)
+                .Include(chp => chp.RamType);
             var chipsetDTOs = new List<ChipsetDTO>();
             foreach (var chipset in allChipsets) {
                 chipsetDTOs.Add(ModelToDto(chipset));
@@ -18,7 +20,10 @@ namespace WebAppSystemBuilder.Services.hw_params {
         }
 
         internal async Task<ChipsetDTO?> GetByIdAsync(int id) {
-            var chipsetModelToEdit = await _dbContext.HW_Chipsets.FindAsync(id);
+            var chipsetModelToEdit = await _dbContext.HW_Chipsets
+                .Include(chp => chp.Socket)
+                .Include(chp => chp.RamType)
+                .FirstAsync(chp =>chp.Id ==id);
             if (chipsetModelToEdit == null) return null;
             return ModelToDto(chipsetModelToEdit);
         }

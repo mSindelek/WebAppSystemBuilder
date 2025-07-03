@@ -20,7 +20,11 @@ namespace WebAppSystemBuilder.Services.hw_items {
         }
 
         internal async Task<MotherboardDTO?> GetByIdAsync(int id) {
-            var motherboardModelToEdit = await _dbContext.HW_Motherboards.FindAsync(id);
+            var motherboardModelToEdit = await _dbContext.HW_Motherboards
+                .Include(mb => mb.Chipset)
+                .Include(mb => mb.Chipset.Socket)
+                .Include(mb => mb.Chipset.RamType)
+                .FirstAsync(mb => mb.Id == id);
             if (motherboardModelToEdit == null) return null;
             return ModelToDto(motherboardModelToEdit);
         }
