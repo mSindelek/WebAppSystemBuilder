@@ -4,45 +4,52 @@
 
 <h1>Index of RAM</h1>
 
-@if (User.Identity != null && User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Editor"))) {
-    <a asp-action="Create" class="btn btn-success text-warning">Add new</a>
-    <br />
-}
+<div class="container">
+    <div class="row mb-3">
+        <div class="col">
+            @if (User.Identity != null && User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Editor"))) {
+                <a asp-action="Create" class="btn btn-success text-warning">Add new</a>
+            }
+        </div>
+    </div>
 
-<div class="border border-1">
-    <table class="table table-sm table-bordered">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>DRAM type</th>
-                <th>Module type</th>
-                <th>ECC support</th>
-                <th style="width:50%">Description</th>
-                @if (User.Identity != null && User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Editor"))) {
-                    <th>Action</th>
-                    <th>ID:</th>
-                }
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model) {
+    <div class="row">
+        <table class="table table-sm table-striped text-center table-bordered">
+            <thead class="table-primary">
                 <tr>
-                    <td>@item.Name</td>
-                    <td>@item.RamTypeName</td>
-                    <td>@item.ModuleTypeName</td>
-                    <td>@item.ECC</td>
-                    <td>@item.ShortDesc</td>
+                    <th class="col-3">Name</th>
+                    <th>Gen.</th>
+                    <th>Type</th>
+                    <th>ECC</th>
+                    <th class="col-8">Description</th>
                     @if (User.Identity != null && User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Editor"))) {
-                        <td>
-                            <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                            <form asp-action="Delete" method="post" style="display:inline">
-                                <button type="submit" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</button>
-                            </form>
-                        </td>
-                        <td>@item.Id</td>
+                        <th>Action</th>
+                        <th>ID:</th>
                     }
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model) {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.RamTypeName</td>
+                        <td>@item.ModuleTypeName</td>
+                        <td>@item.ECC</td>
+                        <td>@item.ShortDesc</td>
+                        @if (User.Identity != null && User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Editor"))) {
+                            <td>
+                                <div class="d-grid gap-1 justify-content-between d-block d-md-flex">
+                                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                    <form asp-action="Delete" method="post">
+                                        <button type="submit" formmethod="post" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</button>
+                                    </form>
+                                </div>
+                            </td>
+                            <td>@item.Id</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>

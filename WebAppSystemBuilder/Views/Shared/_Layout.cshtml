@@ -43,13 +43,15 @@
                         }
                     </ul>
                 </div>
+                <div class="row col-2">
                 @if (User?.Identity?.IsAuthenticated ?? false) {
-                    <div class="m-2">Logged in: @User.Identity.Name</div>
-                    <a class="btn btn-danger" asp-area="" asp-controller="Account" asp-action="LogOut">LogOut</a>
+                    <a class="btn col-10 mx-auto btn-danger" asp-area="" asp-controller="Account" asp-action="LogOut">LogOut</a>
+                    <div class="col-12 text-center">Logged in: @User.Identity.Name</div>
                 }
                 else {
                     <a class="btn btn-danger" asp-area="" asp-controller="Account" asp-action="LogIn" asp-route-returnUrl="/">LogIn</a>
                 }
+                </div>
             </div>
         </nav>
     </header>
